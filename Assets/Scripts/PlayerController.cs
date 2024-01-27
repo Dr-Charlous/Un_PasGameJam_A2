@@ -7,7 +7,6 @@ using DG.Tweening;
 public class PlayerController : MonoBehaviour
 {
     Vector2 _inputs;
-    Inputs _input;
     [SerializeField] bool _inputJump;
     [SerializeField] Rigidbody2D _rb;
 
@@ -63,11 +62,16 @@ public class PlayerController : MonoBehaviour
     //public Animator _animator;
 
 
+    InputActionAsset inputAsset;
+    InputActionMap player;
+    InputAction move;
+
 
 
     private void Awake()
     {
-        _input = new Inputs();
+        inputAsset = GetComponent<PlayerInput>().actions;
+        player = inputAsset.FindActionMap("PlayerInputs");
     }
 
     private void Start()
@@ -77,18 +81,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        _input.Enable();
-        _input.PlayerInputs.Move.performed += GetMoveInputs;
-
-        _input.PlayerInputs.Jump.performed += GetJumpInputs;
+        player.FindAction("Move").performed += GetMoveInputs;
+        player.FindAction("Jump").performed += GetJumpInputs;
+        player.FindAction("Jump").canceled += GetJumpInputsCanceled;
+        player.Enable();
     }
 
     private void OnDisable()
     {
-        _input.Disable();
-        _input.PlayerInputs.Move.performed -= GetMoveInputs;
-
-        _input.PlayerInputs.Jump.performed -= GetJumpInputs;
+        player.FindAction("Move").performed -= GetMoveInputs;
+        player.FindAction("Jump").performed -= GetJumpInputs;
+        player.FindAction("Jump").canceled -= GetJumpInputsCanceled;
+        player.Disable();
     }
 
     #region inputs
@@ -101,6 +105,11 @@ public class PlayerController : MonoBehaviour
     {
         _inputJump = true;
         _timerSinceJumpPressed = 0;
+    }
+    
+    void GetJumpInputsCanceled(InputAction.CallbackContext jump)
+    {
+        _inputJump = false;
     }
     #endregion
 
@@ -215,12 +224,6 @@ public class PlayerController : MonoBehaviour
             //PlaySound(_jumpSound, _audioSource);
             //
             //_particules.SendEvent("OnPlay");
-        }
-
-
-        if (!_input.PlayerInputs.Jump.IsPressed())
-        {
-            _inputJump = false;
         }
     }
     #endregion

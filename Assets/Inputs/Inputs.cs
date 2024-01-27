@@ -44,6 +44,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Join"",
+                    ""type"": ""Button"",
+                    ""id"": ""4236fd8d-5242-47a9-939c-46dc5c010380"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -51,6 +60,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""fe145e49-1f46-4761-bd0a-f3f9cfb0cbb2"",
                     ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""473b3298-8fd4-46c7-a661-d2c461f34435"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -112,6 +132,39 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b56eda1a-abcb-4b36-b898-f22e061f22ef"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33e3d52d-563b-4616-b1e9-c71252cdc5ca"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3808faa-dfcd-4e32-9201-691ab4786095"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +175,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         m_PlayerInputs = asset.FindActionMap("PlayerInputs", throwIfNotFound: true);
         m_PlayerInputs_Move = m_PlayerInputs.FindAction("Move", throwIfNotFound: true);
         m_PlayerInputs_Jump = m_PlayerInputs.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerInputs_Join = m_PlayerInputs.FindAction("Join", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +239,14 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private List<IPlayerInputsActions> m_PlayerInputsActionsCallbackInterfaces = new List<IPlayerInputsActions>();
     private readonly InputAction m_PlayerInputs_Move;
     private readonly InputAction m_PlayerInputs_Jump;
+    private readonly InputAction m_PlayerInputs_Join;
     public struct PlayerInputsActions
     {
         private @Inputs m_Wrapper;
         public PlayerInputsActions(@Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerInputs_Move;
         public InputAction @Jump => m_Wrapper.m_PlayerInputs_Jump;
+        public InputAction @Join => m_Wrapper.m_PlayerInputs_Join;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInputs; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +262,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Join.started += instance.OnJoin;
+            @Join.performed += instance.OnJoin;
+            @Join.canceled += instance.OnJoin;
         }
 
         private void UnregisterCallbacks(IPlayerInputsActions instance)
@@ -216,6 +275,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Join.started -= instance.OnJoin;
+            @Join.performed -= instance.OnJoin;
+            @Join.canceled -= instance.OnJoin;
         }
 
         public void RemoveCallbacks(IPlayerInputsActions instance)
@@ -237,5 +299,6 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnJoin(InputAction.CallbackContext context);
     }
 }
