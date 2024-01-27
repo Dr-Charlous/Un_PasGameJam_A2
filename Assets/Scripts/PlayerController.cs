@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
         player.FindAction("Move").performed += GetMoveInputs;
         player.FindAction("Jump").performed += GetJumpInputs;
         player.FindAction("Jump").canceled += GetJumpInputsCanceled;
+        player.FindAction("Bomb").started += GetBombInputs;
         player.Enable();
     }
 
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour
         player.FindAction("Move").performed -= GetMoveInputs;
         player.FindAction("Jump").performed -= GetJumpInputs;
         player.FindAction("Jump").canceled -= GetJumpInputsCanceled;
+        player.FindAction("Bomb").started -= GetBombInputs;
         player.Disable();
     }
 
@@ -110,6 +112,11 @@ public class PlayerController : MonoBehaviour
     void GetJumpInputsCanceled(InputAction.CallbackContext jump)
     {
         _inputJump = false;
+    }
+    
+    void GetBombInputs(InputAction.CallbackContext bomb)
+    {
+        GetComponentInChildren<PlayerInventory>().PutBomb();
     }
     #endregion
 

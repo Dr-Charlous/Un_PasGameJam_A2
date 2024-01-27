@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] Camera mainCamera;
+    [SerializeField] GameObject CanvaCamera;
     List<PlayerInput> players = new List<PlayerInput>();
     [SerializeField] Transform startingPoints;
     [SerializeField] List<LayerMask> playerLayers;
@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
         players.Add(player);
         player.transform.position = startingPoints.position;
         
-        if (mainCamera.isActiveAndEnabled && players.Count > 0)
-            mainCamera.gameObject.SetActive(false);
+        if (CanvaCamera.activeInHierarchy && players.Count > 0)
+            CanvaCamera.SetActive(false);
     }
 }

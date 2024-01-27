@@ -6,12 +6,12 @@ public class PlayerInteractions : MonoBehaviour
 {
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.GetComponent<PlayerController>() != null)
         {
             Vector3 direction = collision.transform.position - transform.position;
-            collision.transform.GetComponent<Rigidbody2D>().AddForce(direction*GetComponentInParent<Rigidbody2D>().velocity.magnitude, ForceMode2D.Impulse);
+            collision.transform.GetComponent<Rigidbody2D>().AddForce(direction, ForceMode2D.Impulse);
         }
     }
 }
