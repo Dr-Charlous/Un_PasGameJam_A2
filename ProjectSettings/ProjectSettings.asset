@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 72586d8c813c9ac42999070607f79a41
+  productGUID: 7a71eadaaa5e614429d7c864241a3508
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Un_PasGlobalJam_A2
+  productName: Un_NotGlobalGameJam_A2
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -618,14 +618,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Un_PasGlobalJam_A2
+  metroPackageName: Un_NotGlobalGameJam_A2
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Un_PasGlobalJam_A2
+  metroApplicationDescription: Un_NotGlobalGameJam_A2
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -693,10 +693,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: f2735499-de48-4367-9476-624bdcf8ba66
+  cloudProjectId: b992cf81-7b4d-44a1-a59c-d8af51291d75
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Un_PasGlobalJam_A2
+  projectName: Un_NotGlobalGameJam_A2
   organizationId: unity_7846626b93cff596ca9a
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
