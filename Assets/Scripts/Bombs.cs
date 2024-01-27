@@ -17,6 +17,7 @@ public class Bombs : MonoBehaviour
             if (Playerfriendly && inventory.BombNumber < inventory.BombNumberMax)
             {
                 inventory.BombNumber++;
+                inventory.BombText();
                 Destroy(this.gameObject);
             }
             else if (!Playerfriendly)
