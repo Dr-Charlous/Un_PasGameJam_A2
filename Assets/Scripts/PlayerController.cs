@@ -7,8 +7,12 @@ using DG.Tweening;
 public class PlayerController : MonoBehaviour
 {
     Vector2 _inputs;
+    InputActionAsset inputAsset;
+    InputActionMap player;
+    
     [SerializeField] bool _inputJump;
     [SerializeField] Rigidbody2D _rb;
+
 
     [Header("Movements")]
     [SerializeField] float _walkSpeed;
@@ -61,10 +65,6 @@ public class PlayerController : MonoBehaviour
     //public float _offSetCamFall;
     //public Animator _animator;
 
-
-    InputActionAsset inputAsset;
-    InputActionMap player;
-    InputAction move;
 
 
 

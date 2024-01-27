@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField] Camera mainCamera;
     List<PlayerInput> players = new List<PlayerInput>();
-    [SerializeField] List<Transform> startingPoints;
+    [SerializeField] Transform startingPoints;
     [SerializeField] List<LayerMask> playerLayers;
     PlayerInputManager playerInputManager;
 
@@ -28,7 +29,9 @@ public class PlayerManager : MonoBehaviour
     public void AddPlayer(PlayerInput player)
     {
         players.Add(player);
-
-        player.transform.position = startingPoints[players.Count - 1].position;
+        player.transform.position = startingPoints.position;
+        
+        if (mainCamera.isActiveAndEnabled && players.Count > 0)
+            mainCamera.gameObject.SetActive(false);
     }
 }
