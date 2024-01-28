@@ -24,7 +24,7 @@ public class Bombs : MonoBehaviour
                 inventory.BombText();
                 collision.transform.GetComponentInParent<PlayerController>().AnimEat();
                 Instantiate(EatFX, transform.position, Quaternion.identity);
-                collision.transform.GetComponentInParent<PlayerController>()._animator.runtimeAnimatorController = collision.transform.GetComponentInParent<PlayerController>()._animatorControllerFat;
+                collision.transform.GetComponentInParent<PlayerVisual>()._animator.runtimeAnimatorController = collision.transform.GetComponentInParent<PlayerVisual>()._animatorControllerFat;
                 Destroy(this.gameObject);
             }
             else if (!Playerfriendly)

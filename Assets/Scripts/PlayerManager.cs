@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     public List<GameObject> LdPrefab;
     public GameObject Ld;
     public int LdId = 0;
+    [SerializeField] Color[] colors;
 
     private void Awake()
     {
@@ -37,20 +39,57 @@ public class PlayerManager : MonoBehaviour
     public void AddPlayer(PlayerInput player)
     {
         Players.Add(player);
+
+        RandomColorPlayer(player);
+
         player.transform.position = startingPoints.position;
         player.GetComponent<PlayerController>().playerManager = this;
+
         Instantiate(SpawnParticule, player.transform.position, Quaternion.identity);
-        
+
         if (CanvaCamera.activeInHierarchy && Players.Count > 0)
             CanvaCamera.SetActive(false);
+    }
+
+    void RandomColorPlayer(PlayerInput player)
+    {
+        int numbLoop = 0;
+        int rnd = Boucle(Mathf.Abs(Random.Range(0, colors.Length)), numbLoop);
+
+        player.gameObject.GetComponent<PlayerVisual>().ColorInt = rnd;
+        player.gameObject.GetComponent<PlayerVisual>().ColorPlayer = colors[rnd];
+        player.gameObject.GetComponent<PlayerVisual>().PlayerRenderer.color = colors[rnd];
+    }
+
+    private int Boucle(int rnd, int numbLoop)
+    {
+        if (numbLoop < colors.Length)
+        {
+            bool isUsed = false;
+
+            for (int i = 0; i < Players.Count; i++)
+            {
+                if (Players[i].GetComponent<PlayerVisual>().ColorInt == rnd)
+                    isUsed = true;
+            }
+
+            if (!isUsed)
+                return rnd;
+            else
+                return Boucle(Mathf.Abs(Random.Range(0, colors.Length)), numbLoop++);
+        }
+        else
+        {
+            return rnd;
+        }
     }
 
     public void NextLevel()
     {
         Destroy(Ld);
-        if (LdId < LdPrefab.Count-1)
+        if (LdId < LdPrefab.Count - 1)
             LdId++;
-        else 
+        else
             LdId = 0;
 
         Ld = Instantiate(LdPrefab[LdId]);
