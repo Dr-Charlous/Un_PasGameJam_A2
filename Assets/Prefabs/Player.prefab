@@ -2206,8 +2206,8 @@ MonoBehaviour:
   BombPrefab: {fileID: 1408754045244446072, guid: 52ee0e8d52a18194589608a2278251a1, type: 3}
   SpawnBombPoint: {fileID: 2512754832265241369}
   textBomb: {fileID: 3009341972404103797}
-  BombNumberMax: 5
-  BombNumber: 0
+  BombNumberMax: 10
+  BombNumber: 5
 --- !u!1 &8470040164631360866
 GameObject:
   m_ObjectHideFlags: 0

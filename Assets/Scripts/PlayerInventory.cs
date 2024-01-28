@@ -8,7 +8,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] GameObject BombPrefab;
     [SerializeField] Transform SpawnBombPoint;
     [SerializeField] TextMeshProUGUI textBomb;
-    public int BombNumberMax = 5;
+    public int BombNumberMax = 10;
     public int BombNumber = 0;
 
     private void Start()
