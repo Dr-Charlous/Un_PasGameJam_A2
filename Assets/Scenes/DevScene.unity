@@ -601,13 +601,14 @@ MonoBehaviour:
   LdPrefab:
   - {fileID: 2865143913065025732, guid: 0c284f4bd1694684d8cbeb868e9e378d, type: 3}
   - {fileID: 3126611482368995011, guid: 313fd5cbd9b27d440af7a6e963e86f52, type: 3}
+  - {fileID: 3126611482368995011, guid: 4297be5182b3610419fbeefae5780962, type: 3}
   Ld: {fileID: 0}
   LdId: 0
   colors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.91764706, g: 0.7607843, b: 0.06666667, a: 1}
-  - {r: 0.43137255, g: 0.2784314, b: 0.7647059, a: 1}
-  - {r: 0.1764706, g: 0.33333334, b: 0.52156866, a: 1}
+  - {r: 1, g: 0.9411765, b: 0.67058825, a: 1}
+  - {r: 0.2784314, g: 0.91764706, b: 1, a: 1}
   - {r: 0.43137255, g: 0.8901961, b: 0.6666667, a: 1}
   - {r: 0.5058824, g: 0.972549, b: 0.2901961, a: 1}
 --- !u!1001 &1440562271
@@ -626,9 +627,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Top
       objectReference: {fileID: 0}
+    - target: {fileID: 3045818437623084204, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045818437623084204, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.93831676
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045818437623084204, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4190960479891235646, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
       propertyPath: m_Name
       value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989745024371135979, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5273302623011096286, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
       propertyPath: m_Name
@@ -638,6 +655,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6083180654151369424, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 046010db14e6d5048a3e66f577edc2c3, type: 2}
     - target: {fileID: 6085769230418089016, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
