@@ -8,6 +8,7 @@ public class Bubbles : MonoBehaviour
     [SerializeField] float power;
     public BubbleManager manager;
     public bool persistant;
+    [SerializeField] GameObject SpawnParticule;
 
     private void Update()
     {
@@ -18,6 +19,7 @@ public class Bubbles : MonoBehaviour
 
             if (transform.position.y >= manager.point3.y || transform.position.y >= manager.point4.y)
             {
+                Instantiate(SpawnParticule, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
         }
@@ -33,7 +35,15 @@ public class Bubbles : MonoBehaviour
             collision.GetComponentInParent<PlayerVisual>()._animator.SetBool("Explode", true);
 
             if (!persistant)
+            {
+                collision.transform.GetComponentInParent<PlayerController>().PlaySound(collision.transform.GetComponentInParent<PlayerController>()._bubbleExplode, collision.transform.GetComponentInParent<PlayerController>()._audioSource2);
+                Instantiate(SpawnParticule, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
+            }
+            else
+            {
+                collision.transform.GetComponentInParent<PlayerController>().PlaySound(collision.transform.GetComponentInParent<PlayerController>()._bubblePunch, collision.transform.GetComponentInParent<PlayerController>()._audioSource2);
+            }
         }
     }
 }

@@ -137,6 +137,7 @@ MonoBehaviour:
   power: 15
   manager: {fileID: 0}
   persistant: 0
+  SpawnParticule: {fileID: 2111725506523332668, guid: 8b00c556f0da018419839621cf06dcd5, type: 3}
 --- !u!95 &3435282204456370677
 Animator:
   serializedVersion: 5
