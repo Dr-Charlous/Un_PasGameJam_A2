@@ -42,10 +42,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject PlayerMesh;
 
     [Header("Sounds")]
-    [SerializeField] AudioSource _audioSource;
-    //[SerializeField] AudioClip _walkSound;
-    //[SerializeField] AudioClip _jumpSound;
-    //[SerializeField] AudioClip _hitGround;
+    public AudioSource _audioSource;
+    public AudioSource _audioSource1;
+    public AudioSource _audioSource2;
+    [SerializeField] AudioClip _walkSound;
+    [SerializeField] AudioClip _jumpSoundSkinny;
+    [SerializeField] AudioClip _jumpSoundFat;
+    [SerializeField] AudioClip _eatSound;
+    public AudioClip _spawnSound;
+    public AudioClip _explodeSound;
+    public AudioClip _bubbleExplode;
+    public AudioClip _bubblePunch;
+    public AudioClip _win;
 
     [Header("Idk")]
     [SerializeField] float _coyoteTime;
@@ -152,11 +160,6 @@ public class PlayerController : MonoBehaviour
         var velocity = _rb.velocity;
         Vector2 wantedVelocity = new Vector2(_inputs.x * _walkSpeed, velocity.y);
         _rb.velocity = Vector2.MoveTowards(velocity, wantedVelocity, _acceleration * Time.deltaTime);
-
-        //if (_rb.velocity.x != 0 && _isGrounded)
-        //{
-        //    PlaySound(_walkSound, _audioSource);
-        //}
     }
 
     Vector2 point;
@@ -206,8 +209,8 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(point, _groundRadius);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(new Vector2(point.x, point.y - 0.2f), _groundRadius);
+        //Gizmos.color = Color.blue;
+        //Gizmos.DrawWireSphere(new Vector2(point.x, point.y - 0.2f), _groundRadius);
         Gizmos.color = Color.white;
     }
 
@@ -244,8 +247,6 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
             _timerNoJump = _timerMinBetweenJump;
 
-            //PlaySound(_jumpSound, _audioSource);
-            //
             //_particules.SendEvent("OnPlay");
         }
     }
@@ -322,7 +323,6 @@ public class PlayerController : MonoBehaviour
         }
 
 
-
         if (_animator.GetBool("Explode") && _rb.velocity.y != 0 && !_isGrounded)
         {
             _animator.SetBool("Idle", false);
@@ -336,6 +336,18 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("Run", false);
             _animator.SetBool("Jump", true);
             _animator.SetBool("Explode", false);
+
+            if (_inputJump)
+            {
+                if (GetComponentInChildren<PlayerInventory>().BombNumber > 0)
+                {
+                    PlaySound(_jumpSoundFat, _audioSource);
+                }
+                else
+                {
+                    PlaySound(_jumpSoundSkinny, _audioSource);
+                }
+            }
         }
         else if (_inputs.x != 0 && _isGrounded && _rb.velocity.y == 0)
         {
@@ -343,6 +355,8 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("Run", true);
             _animator.SetBool("Jump", false);
             _animator.SetBool("Explode", false);
+
+            PlaySound(_walkSound, _audioSource);
         }
         else if (_inputs.x == 0 && _isGrounded && _rb.velocity.y == 0)
         {
@@ -356,6 +370,7 @@ public class PlayerController : MonoBehaviour
     public void AnimEat()
     {
         _animator.SetTrigger("Eat");
+        PlaySound(_eatSound, _audioSource1);
     }
 
     public void PlaySound(AudioClip _sound, AudioSource _audioSource)
@@ -366,6 +381,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            _audioSource.Stop();
             _audioSource.clip = _sound;
             _audioSource.Play();
         }

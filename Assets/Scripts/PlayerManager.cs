@@ -44,6 +44,7 @@ public class PlayerManager : MonoBehaviour
 
         player.transform.position = startingPoints.position;
         player.GetComponent<PlayerController>().playerManager = this;
+        player.GetComponent<PlayerController>().PlaySound(player.GetComponent<PlayerController>()._spawnSound, player.GetComponent<PlayerController>()._audioSource1);
         player.GetComponent<PlayerVisual>().Crown.SetActive(false);
 
         Instantiate(SpawnParticule, player.transform.position, Quaternion.identity);

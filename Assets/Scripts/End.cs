@@ -27,6 +27,7 @@ public class End : MonoBehaviour
                     playerManager.Players[i].GetComponent<PlayerController>().WinUi.GetComponentInChildren<TextMeshProUGUI>().text = $"Win ! {playerManager.Players[i].GetComponent<PlayerController>().Score}";
                     playerManager.Players[i].GetComponent<PlayerController>().WinUi.SetActive(true);
                     playerManager.Players[i].GetComponent<PlayerVisual>().Crown.SetActive(true);
+                    playerManager.Players[i].GetComponent<PlayerController>().PlaySound(playerManager.Players[i].GetComponent<PlayerController>()._win, playerManager.Players[i].GetComponent<PlayerController>()._audioSource1);
                 }
             }
             isLevelFinished = true;
@@ -52,6 +53,7 @@ public class End : MonoBehaviour
             playerManager.Players[i].GetComponent<PlayerController>().LoseUi.SetActive(false);
             playerManager.Players[i].GetComponent<PlayerController>().WinUi.SetActive(false);
             playerManager.Players[i].GetComponent<PlayerVisual>().Crown.SetActive(false);
+            playerManager.Players[i].GetComponent<PlayerController>()._audioSource1.Stop();
         }
 
         canChange = false;
