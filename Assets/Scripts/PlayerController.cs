@@ -323,23 +323,33 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (_inputs.x == 0 && _rb.velocity.y == 0)
+        if (_animator.GetBool("Explode") && _rb.velocity.y != 0 && !_isGrounded)
         {
-            _animator.SetBool("Idle", true);
+            _animator.SetBool("Idle", false);
             _animator.SetBool("Run", false);
             _animator.SetBool("Jump", false);
+            _animator.SetBool("Explode", true);
         }
-        else if (_rb.velocity.y != 0)
+        else if (_rb.velocity.y != 0 && !_isGrounded)
         {
             _animator.SetBool("Idle", false);
             _animator.SetBool("Run", false);
             _animator.SetBool("Jump", true);
+            _animator.SetBool("Explode", false);
         }
-        else if (_inputs.x != 0 && _isGrounded)
+        else if (_inputs.x != 0 && _isGrounded && _rb.velocity.y == 0)
         {
             _animator.SetBool("Idle", false);
             _animator.SetBool("Run", true);
             _animator.SetBool("Jump", false);
+            _animator.SetBool("Explode", false);
+        }
+        else if (_inputs.x == 0 && _isGrounded && _rb.velocity.y == 0)
+        {
+            _animator.SetBool("Idle", true);
+            _animator.SetBool("Run", false);
+            _animator.SetBool("Jump", false);
+            _animator.SetBool("Explode", false);
         }
     }
 
