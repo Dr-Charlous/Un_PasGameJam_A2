@@ -70,8 +70,6 @@ public class PlayerController : MonoBehaviour
     //public GameObject _cam;
     //public float _offSetCamFall;
     public Animator _animator;
-    public RuntimeAnimatorController _animatorControllerSkinny;
-    public RuntimeAnimatorController _animatorControllerFat;
 
 
 

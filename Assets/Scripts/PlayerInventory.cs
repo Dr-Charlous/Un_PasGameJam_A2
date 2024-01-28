@@ -13,7 +13,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Start()
     {
-        GetComponentInParent<PlayerController>()._animator.runtimeAnimatorController = GetComponentInParent<PlayerController>()._animatorControllerSkinny;
+        GetComponentInParent<PlayerVisual>()._animator.runtimeAnimatorController = GetComponentInParent<PlayerVisual>()._animatorControllerSkinny;
         textBomb.text = $"Bombs : {BombNumber} / {BombNumberMax}";
     }
 
@@ -26,7 +26,7 @@ public class PlayerInventory : MonoBehaviour
             BombText();
 
             if (BombNumber <= 0)
-                GetComponentInParent<PlayerController>()._animator.runtimeAnimatorController = GetComponentInParent<PlayerController>()._animatorControllerSkinny;
+                GetComponentInParent<PlayerVisual>()._animator.runtimeAnimatorController = GetComponentInParent<PlayerVisual>()._animatorControllerSkinny;
         }
     }
 
