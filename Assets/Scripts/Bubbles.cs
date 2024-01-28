@@ -36,12 +36,14 @@ public class Bubbles : MonoBehaviour
 
             if (!persistant)
             {
+                collision.transform.GetComponentInParent<PlayerController>()._audioSource2.Stop();
                 collision.transform.GetComponentInParent<PlayerController>().PlaySound(collision.transform.GetComponentInParent<PlayerController>()._bubbleExplode, collision.transform.GetComponentInParent<PlayerController>()._audioSource2);
                 Instantiate(SpawnParticule, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
             else
             {
+                collision.transform.GetComponentInParent<PlayerController>()._audioSource2.Stop();
                 collision.transform.GetComponentInParent<PlayerController>().PlaySound(collision.transform.GetComponentInParent<PlayerController>()._bubblePunch, collision.transform.GetComponentInParent<PlayerController>()._audioSource2);
             }
         }

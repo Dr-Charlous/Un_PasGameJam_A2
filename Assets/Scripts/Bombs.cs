@@ -59,6 +59,7 @@ public class Bombs : MonoBehaviour
             collision.transform.GetComponentInParent<Rigidbody2D>().velocity = Vector3.zero;
             collision.transform.GetComponentInParent<Rigidbody2D>().AddForce(direction * power, ForceMode2D.Impulse);
             collision.GetComponentInParent<PlayerVisual>()._animator.SetBool("Explode", true);
+            collision.transform.GetComponentInParent<PlayerController>()._audioSource2.Stop();
             collision.transform.GetComponentInParent<PlayerController>().PlaySound(collision.transform.GetComponentInParent<PlayerController>()._explodeSound, collision.transform.GetComponentInParent<PlayerController>()._audioSource2);
         }
     }
