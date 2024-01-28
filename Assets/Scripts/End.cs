@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class End : MonoBehaviour
 {
-    [SerializeField] PlayerManager playerManager;
+    public PlayerManager playerManager;
     public bool isLevelFinished = false;
     public bool canChange = false;
 

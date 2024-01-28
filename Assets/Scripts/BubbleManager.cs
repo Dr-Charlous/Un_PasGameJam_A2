@@ -18,7 +18,7 @@ public class BubbleManager : MonoBehaviour
         {
             float rnd = Random.Range(point1.x, point2.x);
 
-            var bubble = Instantiate(BubblePrefab, new Vector2(rnd, point1.y), Quaternion.identity);
+            var bubble = Instantiate(BubblePrefab, new Vector2(rnd, point1.y), Quaternion.identity, transform);
             bubble.GetComponent<Bubbles>().persistant = false;
             bubble.GetComponent<Bubbles>().manager = this;
 

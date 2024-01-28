@@ -11,6 +11,12 @@ public class PlayerInventory : MonoBehaviour
     public int BombNumberMax = 5;
     public int BombNumber = 0;
 
+    private void Start()
+    {
+        GetComponentInParent<PlayerController>()._animator.runtimeAnimatorController = GetComponentInParent<PlayerController>()._animatorControllerSkinny;
+        textBomb.text = $"Bombs : {BombNumber} / {BombNumberMax}";
+    }
+
     public void PutBomb()
     {
         if (BombNumber > 0)
@@ -18,6 +24,9 @@ public class PlayerInventory : MonoBehaviour
             Instantiate(BombPrefab, SpawnBombPoint.position, Quaternion.identity);
             BombNumber--;
             BombText();
+
+            if (BombNumber <= 0)
+                GetComponentInParent<PlayerController>()._animator.runtimeAnimatorController = GetComponentInParent<PlayerController>()._animatorControllerSkinny;
         }
     }
 

@@ -6,6 +6,7 @@ public class Bombs : MonoBehaviour
 {
     public bool Playerfriendly = false;
     [SerializeField] float power;
+    [SerializeField] float radius = 2;
     [SerializeField] CircleCollider2D triggerCollider;
     [SerializeField] GameObject ExplosionFX;
     [SerializeField] GameObject EatFX;
@@ -22,11 +23,12 @@ public class Bombs : MonoBehaviour
                 inventory.BombText();
                 collision.transform.GetComponentInParent<PlayerController>().AnimEat();
                 Instantiate(EatFX, transform.position, Quaternion.identity);
+                collision.transform.GetComponentInParent<PlayerController>()._animator.runtimeAnimatorController = collision.transform.GetComponentInParent<PlayerController>()._animatorControllerFat;
                 Destroy(this.gameObject);
             }
             else if (!Playerfriendly)
             {
-                triggerCollider.radius = 2;
+                triggerCollider.radius = radius;
                 Vector3 direction = collision.transform.position - transform.position;
                 collision.transform.GetComponentInParent<Rigidbody2D>().velocity = Vector3.zero;
                 collision.transform.GetComponentInParent<Rigidbody2D>().AddForce(direction * power, ForceMode2D.Impulse);
@@ -34,5 +36,11 @@ public class Bombs : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

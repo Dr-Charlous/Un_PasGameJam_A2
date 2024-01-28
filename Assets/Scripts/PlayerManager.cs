@@ -7,24 +7,21 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] GameObject CanvaCamera;
     [SerializeField] GameObject SpawnParticule;
-    [SerializeField] Transform startingPoints;
+    public Transform startingPoints;
     PlayerInputManager playerInputManager;
     public List<PlayerInput> Players = new List<PlayerInput>();
-    public List<Transform> LdSpawnPoint;
-    public List<GameObject> Ld;
+    public List<GameObject> LdPrefab;
+    public GameObject Ld;
     public int LdId = 0;
 
     private void Awake()
     {
         playerInputManager = GetComponent<PlayerInputManager>();
-    }
+        CanvaCamera.SetActive(true);
 
-    private void Start()
-    {
-        for (int i = 1; i < Ld.Count; i++)
-        {
-            Ld[i].SetActive(false);
-        }
+        Ld = Instantiate(LdPrefab[LdId]);
+        Ld.GetComponentInChildren<End>().playerManager = this;
+        startingPoints = Ld.GetComponentInChildren<SpawnPoint>().transform;
     }
 
     private void OnEnable()
@@ -39,8 +36,6 @@ public class PlayerManager : MonoBehaviour
 
     public void AddPlayer(PlayerInput player)
     {
-        startingPoints = LdSpawnPoint[LdId];
-
         Players.Add(player);
         player.transform.position = startingPoints.position;
         player.GetComponent<PlayerController>().playerManager = this;
@@ -52,16 +47,19 @@ public class PlayerManager : MonoBehaviour
 
     public void NextLevel()
     {
-        Ld[LdId].SetActive(false);
-        if (LdId < LdSpawnPoint.Count-1)
+        Destroy(Ld);
+        if (LdId < LdPrefab.Count-1)
             LdId++;
         else 
             LdId = 0;
-        Ld[LdId].SetActive(true);
+
+        Ld = Instantiate(LdPrefab[LdId]);
+        Ld.GetComponentInChildren<End>().playerManager = this;
+        startingPoints = Ld.GetComponentInChildren<SpawnPoint>().transform;
 
         for (int i = 0; i < Players.Count; i++)
         {
-            Players[i].transform.position = LdSpawnPoint[LdId].position;
+            Players[i].transform.position = startingPoints.position;
         }
     }
 }

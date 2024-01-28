@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour
     //public GameObject _cam;
     //public float _offSetCamFall;
     public Animator _animator;
+    public RuntimeAnimatorController _animatorControllerSkinny;
+    public RuntimeAnimatorController _animatorControllerFat;
 
 
 
@@ -111,9 +113,9 @@ public class PlayerController : MonoBehaviour
         _inputJump = true;
         _timerSinceJumpPressed = 0;
 
-        if (playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().isLevelFinished && playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().canChange)
+        if (playerManager.Ld.GetComponentInChildren<End>().isLevelFinished && playerManager.Ld.GetComponentInChildren<End>().canChange)
         {
-            playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().ChangeLd();
+            playerManager.Ld.GetComponentInChildren<End>().ChangeLd();
         }
     }
 
@@ -124,9 +126,9 @@ public class PlayerController : MonoBehaviour
 
     void GetBombInputs(InputAction.CallbackContext bomb)
     {
-        if (playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().isLevelFinished && playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().canChange)
+        if (playerManager.Ld.GetComponentInChildren<End>().isLevelFinished && playerManager.Ld.GetComponentInChildren<End>().canChange)
         {
-            playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().ChangeLd();
+            playerManager.Ld.GetComponentInChildren<End>().ChangeLd();
         }
         else
         {
