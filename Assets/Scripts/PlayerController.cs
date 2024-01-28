@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     //public GameObject Rooms;
     //public GameObject _cam;
     //public float _offSetCamFall;
-    //public Animator _animator;
+    public Animator _animator;
 
 
 
@@ -290,12 +290,12 @@ public class PlayerController : MonoBehaviour
     {
         if (_inputs.x != 0)
         {
-            int side = 0;
+            float side = 0;
 
             if (_inputs.x < 0)
-                side = -1;
+                side = -0.1f;
             else
-                side = 1;
+                side = 0.1f;
 
             if (PlayerMesh.transform.localScale.x != side && _rb.velocity.y == 0)
             {
@@ -307,24 +307,29 @@ public class PlayerController : MonoBehaviour
 
 
 
-        //if (_inputs.x == 0 && _rb.velocity.y == 0)
-        //{
-        //    _animator.SetBool("Idle", true);
-        //    _animator.SetBool("Run", false);
-        //    _animator.SetBool("Jump", false);
-        //}
-        //else if (_rb.velocity.y != 0)
-        //{
-        //    _animator.SetBool("Idle", false);
-        //    _animator.SetBool("Run", false);
-        //    _animator.SetBool("Jump", true);
-        //}
-        //else if (_inputs.x != 0 && _isGrounded)
-        //{
-        //    _animator.SetBool("Idle", false);
-        //    _animator.SetBool("Run", true);
-        //    _animator.SetBool("Jump", false);
-        //}
+        if (_inputs.x == 0 && _rb.velocity.y == 0)
+        {
+            _animator.SetBool("Idle", true);
+            _animator.SetBool("Run", false);
+            _animator.SetBool("Jump", false);
+        }
+        else if (_rb.velocity.y != 0)
+        {
+            _animator.SetBool("Idle", false);
+            _animator.SetBool("Run", false);
+            _animator.SetBool("Jump", true);
+        }
+        else if (_inputs.x != 0 && _isGrounded)
+        {
+            _animator.SetBool("Idle", false);
+            _animator.SetBool("Run", true);
+            _animator.SetBool("Jump", false);
+        }
+    }
+
+    public void AnimEat()
+    {
+        _animator.SetTrigger("Eat");
     }
 
     public void PlaySound(AudioClip _sound, AudioSource _audioSource)

@@ -198,5 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Playerfriendly: 0
-  power: 10
+  power: 15
   triggerCollider: {fileID: 2992651635897623507}
+  ExplosionFX: {fileID: 693231426426091256, guid: 3b7514ac6b22cf2438055e0a7bab60a2, type: 3}
+  EatFX: {fileID: 342440554468174770, guid: 47b1942d06c184f429cb31844d0ec7f5, type: 3}
