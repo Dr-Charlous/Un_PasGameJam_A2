@@ -730,7 +730,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ce14acb1affa29c40b4fb2a529524708, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1646,6 +1646,7 @@ MonoBehaviour:
   _physicsNoFriction: {fileID: 6200000, guid: 0a66625ed1f3aed4cbd9a8514f25ef21, type: 2}
   LoseUi: {fileID: 2981645042451522236}
   WinUi: {fileID: 5273302623011096286}
+  Score: 0
   _animator: {fileID: 6083180654151369424}
   _animatorControllerSkinny: {fileID: 9100000, guid: 046010db14e6d5048a3e66f577edc2c3, type: 2}
   _animatorControllerFat: {fileID: 9100000, guid: c2ae12b136e40b849a30442199cca8d8, type: 2}

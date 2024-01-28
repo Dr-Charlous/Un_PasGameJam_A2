@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,14 +29,20 @@ public class Bombs : MonoBehaviour
             }
             else if (!Playerfriendly)
             {
-                triggerCollider.radius = radius;
-                Vector3 direction = collision.transform.position - transform.position;
-                collision.transform.GetComponentInParent<Rigidbody2D>().velocity = Vector3.zero;
-                collision.transform.GetComponentInParent<Rigidbody2D>().AddForce(direction * power, ForceMode2D.Impulse);
-                Instantiate(ExplosionFX, transform.position, Quaternion.identity);
-                Destroy(this.gameObject);
+                Explode(collision);
             }
         }
+    }
+
+    private void Explode(Collider2D collision)
+    {
+        triggerCollider.radius = radius;
+
+        Vector3 direction = collision.transform.position - transform.position;
+        collision.transform.GetComponentInParent<Rigidbody2D>().velocity = Vector3.zero;
+        collision.transform.GetComponentInParent<Rigidbody2D>().AddForce(direction * power, ForceMode2D.Impulse);
+        Instantiate(ExplosionFX, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 
     private void OnDrawGizmos()

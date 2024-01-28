@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
     [Header("UI")]
     public GameObject LoseUi;
     public GameObject WinUi;
+    public int Score;
 
     RaycastHit2D[] _hitResults = new RaycastHit2D[2];
     float[] directions = new float[] { 1, -1 };

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,10 +18,13 @@ public class End : MonoBehaviour
             {
                 if (playerManager.Players[i] != collision.GetComponent<PlayerInput>())
                 {
+                    playerManager.Players[i].GetComponent<PlayerController>().LoseUi.GetComponentInChildren<TextMeshProUGUI>().text = $"Lose... {playerManager.Players[i].GetComponent<PlayerController>().Score}";
                     playerManager.Players[i].GetComponent<PlayerController>().LoseUi.SetActive(true);
                 }
                 else
                 {
+                    playerManager.Players[i].GetComponent<PlayerController>().Score++;
+                    playerManager.Players[i].GetComponent<PlayerController>().WinUi.GetComponentInChildren<TextMeshProUGUI>().text = $"Win ! {playerManager.Players[i].GetComponent<PlayerController>().Score}";
                     playerManager.Players[i].GetComponent<PlayerController>().WinUi.SetActive(true);
                 }
             }
