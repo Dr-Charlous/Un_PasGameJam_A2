@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4574654290811245954}
   - component: {fileID: 2045495584111500427}
   - component: {fileID: 7769388721190254758}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7769388721190254758
 MonoBehaviour:
   m_ObjectHideFlags: 0

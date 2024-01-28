@@ -30,6 +30,7 @@ public class Bubbles : MonoBehaviour
             Vector3 direction = collision.transform.position - transform.position;
             collision.transform.GetComponentInParent<Rigidbody2D>().velocity = Vector3.zero;
             collision.transform.GetComponentInParent<Rigidbody2D>().AddForce(direction * power, ForceMode2D.Impulse);
+            collision.GetComponentInParent<PlayerVisual>()._animator.SetBool("Explode", true);
 
             if (!persistant)
                 Destroy(this.gameObject);

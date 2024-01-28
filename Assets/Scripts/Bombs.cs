@@ -54,8 +54,12 @@ public class Bombs : MonoBehaviour
     {
         Vector2 direction = collision.transform.position - transform.position;
 
-        collision.transform.GetComponentInParent<Rigidbody2D>().velocity = Vector3.zero;
-        collision.transform.GetComponentInParent<Rigidbody2D>().AddForce(direction * power, ForceMode2D.Impulse);
+        if (collision.GetComponent<PlayerInventory>())
+        {
+            collision.transform.GetComponentInParent<Rigidbody2D>().velocity = Vector3.zero;
+            collision.transform.GetComponentInParent<Rigidbody2D>().AddForce(direction * power, ForceMode2D.Impulse);
+            collision.GetComponentInParent<PlayerVisual>()._animator.SetBool("Explode", true);
+        }
     }
 
     private void OnDrawGizmos()
