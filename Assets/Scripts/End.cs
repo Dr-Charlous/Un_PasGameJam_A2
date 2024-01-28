@@ -26,6 +26,7 @@ public class End : MonoBehaviour
                     playerManager.Players[i].GetComponent<PlayerController>().Score++;
                     playerManager.Players[i].GetComponent<PlayerController>().WinUi.GetComponentInChildren<TextMeshProUGUI>().text = $"Win ! {playerManager.Players[i].GetComponent<PlayerController>().Score}";
                     playerManager.Players[i].GetComponent<PlayerController>().WinUi.SetActive(true);
+                    playerManager.Players[i].GetComponent<PlayerVisual>().Crown.SetActive(true);
                 }
             }
             isLevelFinished = true;
@@ -50,6 +51,7 @@ public class End : MonoBehaviour
         {
             playerManager.Players[i].GetComponent<PlayerController>().LoseUi.SetActive(false);
             playerManager.Players[i].GetComponent<PlayerController>().WinUi.SetActive(false);
+            playerManager.Players[i].GetComponent<PlayerVisual>().Crown.SetActive(false);
         }
 
         canChange = false;

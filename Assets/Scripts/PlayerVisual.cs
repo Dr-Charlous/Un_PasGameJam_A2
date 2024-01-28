@@ -11,4 +11,5 @@ public class PlayerVisual : MonoBehaviour
     public Color ColorPlayer;
     public int ColorInt;
     public SpriteRenderer PlayerRenderer;
+    public GameObject Crown;
 }
