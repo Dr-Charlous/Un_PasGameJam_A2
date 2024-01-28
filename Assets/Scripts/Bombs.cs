@@ -12,37 +12,50 @@ public class Bombs : MonoBehaviour
     [SerializeField] GameObject ExplosionFX;
     [SerializeField] GameObject EatFX;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
+    {
+        if (!Playerfriendly && GetComponent<CircleCollider2D>().radius != radius)
+            GetComponent<CircleCollider2D>().radius = radius;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         var inventory = collision.GetComponent<PlayerInventory>();
 
-        if (inventory != null)
+        if (Playerfriendly && inventory != null && inventory.BombNumber < inventory.BombNumberMax)
         {
-            if (Playerfriendly && inventory.BombNumber < inventory.BombNumberMax)
-            {
-                inventory.BombNumber++;
-                inventory.BombText();
-                collision.transform.GetComponentInParent<PlayerController>().AnimEat();
-                Instantiate(EatFX, transform.position, Quaternion.identity);
-                collision.transform.GetComponentInParent<PlayerVisual>()._animator.runtimeAnimatorController = collision.transform.GetComponentInParent<PlayerVisual>()._animatorControllerFat;
-                Destroy(this.gameObject);
-            }
-            else if (!Playerfriendly)
+            inventory.BombNumber++;
+            inventory.BombText();
+            collision.transform.GetComponentInParent<PlayerController>().AnimEat();
+            Instantiate(EatFX, transform.position, Quaternion.identity);
+            collision.transform.GetComponentInParent<PlayerVisual>()._animator.runtimeAnimatorController = collision.transform.GetComponentInParent<PlayerVisual>()._animatorControllerFat;
+            Destroy(this.gameObject);
+        }
+        else if (!Playerfriendly)
+        {
+            Collider2D[] obj = Physics2D.OverlapCircleAll(transform.position, radius);
+
+            foreach (Collider2D obj2 in obj)
             {
                 Explode(collision);
+
+                if (obj2.GetComponent<Bombs>() != null)
+                {
+                    obj2.GetComponent<Bombs>().Playerfriendly = false;
+                }
             }
+
+            Instantiate(ExplosionFX, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
         }
     }
 
-    private void Explode(Collider2D collision)
+    public void Explode(Collider2D collision)
     {
-        triggerCollider.radius = radius;
+        Vector2 direction = collision.transform.position - transform.position;
 
-        Vector3 direction = collision.transform.position - transform.position;
         collision.transform.GetComponentInParent<Rigidbody2D>().velocity = Vector3.zero;
         collision.transform.GetComponentInParent<Rigidbody2D>().AddForce(direction * power, ForceMode2D.Impulse);
-        Instantiate(ExplosionFX, transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
     }
 
     private void OnDrawGizmos()
