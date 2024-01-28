@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     Vector2 _inputs;
     InputActionAsset inputAsset;
     InputActionMap player;
-    
+    public PlayerManager playerManager;
+
     [SerializeField] bool _inputJump;
     [SerializeField] Rigidbody2D _rb;
 
@@ -57,6 +58,10 @@ public class PlayerController : MonoBehaviour
     Vector3 _offsetToReplace;
     Vector2 _collisionBox;
 
+    [Header("UI")]
+    public GameObject LoseUi;
+    public GameObject WinUi;
+
     RaycastHit2D[] _hitResults = new RaycastHit2D[2];
     float[] directions = new float[] { 1, -1 };
     //public VisualEffect _particules;
@@ -72,11 +77,9 @@ public class PlayerController : MonoBehaviour
     {
         inputAsset = GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("PlayerInputs");
-    }
 
-    private void Start()
-    {
-        //transform.position = new Vector3(0, -9.3f, 0);
+        LoseUi.SetActive(false);
+        WinUi.SetActive(false);
     }
 
     private void OnEnable()
@@ -107,16 +110,28 @@ public class PlayerController : MonoBehaviour
     {
         _inputJump = true;
         _timerSinceJumpPressed = 0;
+
+        if (playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().isLevelFinished && playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().canChange)
+        {
+            playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().ChangeLd();
+        }
     }
-    
+
     void GetJumpInputsCanceled(InputAction.CallbackContext jump)
     {
         _inputJump = false;
     }
-    
+
     void GetBombInputs(InputAction.CallbackContext bomb)
     {
-        GetComponentInChildren<PlayerInventory>().PutBomb();
+        if (playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().isLevelFinished && playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().canChange)
+        {
+            playerManager.Ld[playerManager.LdId].GetComponentInChildren<End>().ChangeLd();
+        }
+        else
+        {
+            GetComponentInChildren<PlayerInventory>().PutBomb();
+        }
     }
     #endregion
 

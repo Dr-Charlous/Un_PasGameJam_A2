@@ -8,6 +8,8 @@ public class Bubbles : MonoBehaviour
     [SerializeField] float power;
     public BubbleManager manager;
     public bool persistant;
+    [SerializeField] float timer = 0;
+    [SerializeField] float timerMaxDispawn = 3;
 
     private void Update()
     {
@@ -20,6 +22,10 @@ public class Bubbles : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
+
+            timer+=Time.deltaTime;
+            if (timer > timerMaxDispawn*60)
+                Destroy(this.gameObject);
         }
     }
 

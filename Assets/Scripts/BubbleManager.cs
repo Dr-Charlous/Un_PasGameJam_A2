@@ -6,6 +6,7 @@ public class BubbleManager : MonoBehaviour
 {
     [SerializeField] GameObject BubblePrefab;
     [SerializeField] float spawnSpeed = 5;
+    public bool isActive = false;
     public Vector2 point1, point2, point3, point4;
     float time = 0;
 
