@@ -653,12 +653,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6083180654151369424, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6083180654151369424, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 046010db14e6d5048a3e66f577edc2c3, type: 2}
+      objectReference: {fileID: 9100000, guid: c2ae12b136e40b849a30442199cca8d8, type: 2}
     - target: {fileID: 6085769230418089016, guid: ca7fc12e374aaeb4bb29b6149722fed8, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0

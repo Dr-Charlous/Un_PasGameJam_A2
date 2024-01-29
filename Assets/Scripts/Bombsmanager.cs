@@ -14,7 +14,7 @@ public class Bombsmanager : MonoBehaviour
     {
         if (collision == null)
         {
-            var obj = Instantiate(BombPrefab, transform.position, Quaternion.identity);
+            var obj = Instantiate(BombPrefab, transform.position, Quaternion.identity, transform);
             obj.GetComponent<Bombs>().Playerfriendly = true;
         }
     }
@@ -26,7 +26,7 @@ public class Bombsmanager : MonoBehaviour
             time += Time.deltaTime;
             if (time >= timeRespawn)
             {
-                var obj = Instantiate(BombPrefab, transform.position, Quaternion.identity);
+                var obj = Instantiate(BombPrefab, transform.position, Quaternion.identity, transform);
                 obj.GetComponent<Bombs>().Playerfriendly = true;
                 time = 0;
             }
