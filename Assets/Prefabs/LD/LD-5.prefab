@@ -2828,7 +2828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BubblePrefab: {fileID: 4044529861352661562, guid: 6009f7f1163622b4fad0a06ac0e9307f, type: 3}
-  spawnSpeed: 5
+  spawnSpeed: 20
   isActive: 0
   point1: {x: -5, y: -2}
   point2: {x: 5, y: -2}
