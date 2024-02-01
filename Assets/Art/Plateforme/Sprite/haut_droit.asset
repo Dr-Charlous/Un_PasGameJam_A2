@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: haut_droit
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: -1247966113, guid: 901dacc6bbe69ad4a9ca136492b86fc1, type: 3}
-  - {fileID: -686925208, guid: 901dacc6bbe69ad4a9ca136492b86fc1, type: 3}
+  - {fileID: -475814458, guid: 901dacc6bbe69ad4a9ca136492b86fc1, type: 3}
   - {fileID: -242735480, guid: 901dacc6bbe69ad4a9ca136492b86fc1, type: 3}
+  - {fileID: 797149901, guid: 901dacc6bbe69ad4a9ca136492b86fc1, type: 3}
   m_MinSpeed: 7
   m_MaxSpeed: 7
   m_AnimationStartTime: 0
